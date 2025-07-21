@@ -2,7 +2,7 @@
 A updated re-make of a computer I built in the early 80's.
 <img width="1512" height="1969" alt="image" src="https://github.com/user-attachments/assets/7cdb5c51-7d5b-4b4a-af5d-a0cc5c82cc22" />
 
-Back in the early 80's I built a 6809 based computer based on the SWTPC 6809, the most popular 6809 computer at the time. 
+In the early 80's I built a 6809 based computer based on the SWTPC 6809, the most popular 6809 computer at the time. 
 Back then before the internet it took a lot of effort to find the information needed, although schematics were made available by the manufacturer, software was much harder to come by.
 I had a disk that a mate, who was also building his own machine, managed to get hold of and modified the Motorola Assist09 monitor to boot the SSSD 5.25" disk.
 After quite a lot of learning about configuring Flex to work on my hardware I managed to get it working, it was a great learning experience that really got me interested in playing around with computers.
