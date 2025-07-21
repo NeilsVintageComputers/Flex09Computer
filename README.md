@@ -1,5 +1,5 @@
 # Flex09 Computer
-A updated re-make of a computer I built in the early 80's.
+An updated re-make of a computer I built in the early 80's.
 <img width="1512" height="1969" alt="image" src="https://github.com/user-attachments/assets/7cdb5c51-7d5b-4b4a-af5d-a0cc5c82cc22" />
 
 In the early 80's I built a 6809 based computer based on the SWTPC 6809, the most popular 6809 computer at the time. 
@@ -30,7 +30,7 @@ I made a cut down monitor eprom to try and work out where the problem might be b
 After seeing that the CPU was actually doing “something” I decided the no go situation was probably caused by the Ram board.  I decided the way to check this was to design a Parallel Port board with LEDs on it that could display the status of a Ram checking program. 
 After the board was made a program was written that used no stack or ram and could be substituted for the Monitor Rom, it tested a predefined memory range displaying progress and errors on the 8-bit LED port. 
 
-It turned out that the ram board had 2 problems! A data buffer enable decoding error AND a data direction error.  I must have been half asleep when designing this board!
+It turned out that the ram board had 2 problems! A data buffer enable decoding error AND a data buffer direction selection error.  I must have been half asleep when designing this board!
 After bodging a repair the ram test passed, I then fitted the Sbug monitor and I had a monitor prompt on the screen!
 
 The next step was to build a disk controller, some of the disks I had were double density so I used a WD2797 (the same as in my 1980s version). These are quite hard to find and expensive, I found some on Ebay and Aliexpress and bought the cheapest one hoping it would be ok.
