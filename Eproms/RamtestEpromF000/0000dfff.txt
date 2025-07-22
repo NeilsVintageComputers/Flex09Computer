@@ -7,10 +7,10 @@
 * NEIL FARRALL FLEX-09 CPU BOARD 
 * 56K RAM MEMORY BOARD  0000 - DFFF
 * PARALLEL PORT BOARD AT E020
-* ORGed at F000 for manual execution but should run from reset  *  if put in F800-FFFF
+* ORGed at F000 for manual execution but should run from reset if put in F800-FFFF
 
 * 0000DFFF.TXT HAS NO SUBROUTINE CALLS SO DOESNT USE THE STACK
-*  No doubt it could be written more efficiently after I have   *   re-learned all 6809 assembly language I have forgotten!!
+*  No doubt it could be written more efficiently after I have re-learned all 6809 assembly language I have forgotten!!
 
 
 
