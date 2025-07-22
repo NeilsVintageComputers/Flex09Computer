@@ -1,0 +1,281 @@
+
+* NAM 0000DFFF.TXT
+
+* CUT DOWN TO TEST RAM
+
+**** HARDWARE ****
+* NEIL FARRALL FLEX-09 CPU BOARD 
+* 56K RAM MEMORY BOARD  0000 - DFFF
+* PARALLEL PORT BOARD AT E020
+* ORGed at F000 for manual execution but should run from reset  *  if put in F800-FFFF
+
+* 0000DFFF.TXT HAS NO SUBROUTINE CALLS SO DOESNT USE THE STACK
+*  No doubt it could be written more efficiently after I have   *   re-learned all 6809 assembly language I have forgotten!!
+
+
+
+TEMP            EQU $DFF0       ;16 BYTES FOR TEMP STORAGE DFF0-DFFF
+STACK           EQU $DFEF       ;STACK START
+
+LedPIA          EQU $E020
+LedPIA_DRA      EQU $E020
+LedPIA_CONTA    EQU $E021
+LedPIA_DRB      EQU $E022
+LedPIA_CONTB    EQU $E023
+LedPIA_BUFFERS  EQU $E02F 
+
+* SET THESE TO START & END OF MEM BLOCK TO TEST
+RAMstart        EQU $0000
+RAMend          EQU $DFFF
+
+
+* DELAY TO SLOW DOWN AND ALLOW VIEWING OF DATA WRITTEN/READ TO RAM
+DEBUGdelay      EQU $01         ;range $01 - $1000
+
+
+
+
+
+ ORG $F000
+START           LDS     #STACK      ;LOAD STACK POINTER (NOT USED)
+
+********** INITIALISE PIA PORT B AS OUTPUTS ************************                            
+********************************************************************
+                LDA #$0F          ;SWITCH ALL BUFFERS TO BE OUTPUTS
+                STA LedPIA_BUFFERS
+
+
+                LDA #0
+                STA LedPIA_CONTB  ;WRITE TO CONTROL REG TO SEL DDRB
+
+                LDA #$FF          ;SET PORTB AS OUTPUTS
+                STA LedPIA_DRB
+
+                LDA #4          
+                STA LedPIA_CONTB  ;WRITE TO CONTROL REG TO SEL DRB
+
+                LDA #0
+                STA LedPIA_DRB    ;INITIAL STATEF ALL LEDS OFF
+
+
+
+                                            
+********** FLASH PIA PORT B LEDS ***********************************
+
+********************************************************************
+                LDA #$FF        ;LEDS ON
+                STA LedPIA+2
+        
+                LDX #0
+SECCNT		NOP
+                LEAX -1,X
+                BNE SECCNT
+********************************************************************
+
+********************************************************************
+                LDA #0                ;LEDS OFF
+                STA LedPIA+2
+        
+                LDX #0
+SECCNT1         NOP
+                LEAX -1,X
+                BNE SECCNT1
+********************************************************************
+
+********************************************************************
+                LDA #$FF                ;LEDS ON
+                STA LedPIA+2
+        
+                LDX #0
+SECCNT2         NOP
+                LEAX -1,X
+                BNE SECCNT2
+********************************************************************
+
+********************************************************************
+                LDA #0                ;LEDS OFF
+                STA LedPIA+2
+        
+                LDX #0
+SECCNT3         NOP
+                LEAX -1,X
+                BNE SECCNT3
+********************************************************************
+
+
+
+
+
+
+
+
+********************************************************************
+
+*************** INITIALISE RAM TO 10101010 *************************
+
+RAMLOOP         LDA #$AA               ;fill mem with AA
+                LDX #RAMstart
+FILLloop        STA 0,X
+                LEAX 1,X
+                CMPX #RAMend+1
+                BNE FILLloop
+
+
+************** TEST RAM CHANGE TO 01010101 *************************
+
+                LDA #$55               ;change ram to 55 and check
+                LDX #RAMstart
+TEST55loop      STA 0,X
+
+                LDB 0,X
+                STB LedPIA+2
+                BRA  ERRORcheck55
+
+RETURNerror55   LDY #DEBUGdelay    ;delay to allow viewing of leds
+SECCNT4         LEAY -1,Y
+                BNE SECCNT4
+
+                LDB #0        ;LEDS OFF
+                STB LedPIA+2
+                LDY #DEBUGdelay
+SECCNT5         LEAY -1,Y
+                BNE SECCNT5
+
+                LEAX 1,X
+                CMPX #RAMend+1
+                BNE TEST55loop
+********************************************************************        
+
+
+
+*************** TEST RAM CHANGE TO 10101010 *************************
+
+                LDA #$AA            ;change ram ack to AA and check
+                LDX #RAMstart
+TESTAAloop      STA 0,X
+
+                LDB 0,X
+                STB LedPIA+2
+                BRA ERRORcheckAA
+
+RETURNerrorAA   LDY #DEBUGdelay
+SECCNT6         LEAY -1,Y
+                BNE SECCNT6
+
+                LDB #0        ;LEDS OFF
+                STB LedPIA+2
+                LDY #DEBUGdelay
+SECCNT7         LEAY -1,Y
+                BNE SECCNT7
+
+                LEAX 1,X
+                CMPX #RAMend+1
+                BNE TESTAAloop
+********************************************************************        
+
+
+                BRA    RAMLOOP
+
+********************************************************************
+
+
+
+
+
+
+*************** CHECK FOR RAM ERROR ********************************
+********* X REG CONTAINS ADDRESS OF ERROR  
+********* A REG CONTAINS PATTERN WRITTEN TO RAM
+********* B REG CONTAINS PATTERN READ ACK FROM RAM
+********* Y REG CAN BE USED AS TEMP VARIALE
+
+
+********************************************************************
+ERRORcheck55    CMPA 0,X
+                BEQ ALLok55
+
+                TFR X,D
+REPEATflash     STA LedPIA+2        ;SET LEDS TO ERROR ADDRESS HIGH BYTE
+                LDX #0
+SECCNT55        NOP
+                NOP
+                NOP
+                LEAX -1,X
+                BNE SECCNT55
+
+                LDB #0                ;LEDS OFF
+                STB LedPIA+2
+                LDX #0
+SECCNT35        NOP
+                NOP
+                LEAX -1,X
+                BNE SECCNT35
+                BRA REPEATflash
+
+
+ALLok55         BRA RETURNerror55
+
+********************************************************************
+
+
+
+
+********************************************************************
+ERRORcheckAA    CMPA 0,X
+                BEQ ALLokAA
+
+                TFR X,D
+REPEATflashAA   STA LedPIA+2        ;SET LEDS TO ERROR ADDRESS HIGH BYTE
+                LDX #0
+SECCNTAA        NOP
+                NOP
+                NOP
+                LEAX -1,X
+                BNE SECCNTAA
+
+                LDB #0                ;LEDS OFF
+                STB LedPIA+2
+                LDX #0
+SECCNT3AA       NOP
+                NOP
+                LEAX -1,X
+                BNE SECCNT3AA
+                BRA REPEATflashAA
+
+ 
+ALLokAA         BRA RETURNerrorAA
+
+********************************************************************
+
+
+
+
+
+
+
+*SPARE BYTES
+ ORG *
+ FILL 255,128
+ ORG *
+
+                              
+********************************************************************
+* 6809 VECTORS
+* $0800 added as these vectors are only used if the eprom is put 
+* the F800-FFFF eprom socket
+ ORG $F7F0
+                FDB START+$0800       ;RESTART-V
+                FDB START+$0800       ;RESTART-V
+                FDB START+$0800       ;RESTART-V
+                FDB START+$0800       ;RESTART-V
+                FDB START+$0800       ;RESTART-V
+                FDB START+$0800       ;RESTART-V
+                FDB START+$0800       ;RESTART-V
+ 			FDB START+$0800 	;RESTART-V
+********************************************************************
+
+ END
+
+
+ 
+
