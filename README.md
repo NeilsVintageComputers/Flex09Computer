@@ -38,10 +38,6 @@ When the PCB arrived I assembled it and to my surprise with the Test jumper fitt
 After calibration I made a cable to connect a pair of 720k drives and tested that the drive was activated when booting with the U command. 
 Next the big test I had been waiting for for about a year since starting the project......... with a sssd 35track system disk image I had made from the 40+ year old system disk in the drive, it booted Flex!!
 
-The next task will be to produce a set of disks and images in both 3.5” and 5.25” formats.
-Back in the 80's disks were quite expensive so the 30+ disks I have contain a mixture of programs and data that need sorting onto a more logical set of program and data disks, once done I will add them to this repository.
-
-
 
 
 
