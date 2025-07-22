@@ -6,7 +6,7 @@
 **** HARDWARE ****
 * NEIL FARRALL FLEX-09 CPU BOARD 
 * 56K RAM MEMORY BOARD  0000 - DFFF
-* PARALLEL PORT BOARD AT E020 with LEDS to indicate progress and display the first 8k block it detects with a error
+* PARALLEL PORT BOARD AT E020 with LEDS on PortB to indicate progress and display the first 8k block it detects with a error
 * ORGed at F000 for manual execution but should run from reset if put in F800-FFFF
 
 * 0000DFFF.TXT HAS NO SUBROUTINE CALLS SO DOESNT USE THE STACK
