@@ -3,6 +3,7 @@ KMFDC2 ALIGNMENT INSTRUCTIONS
 A Oscilloscope is required to carry out this alignment procedure.
 
 - Initially start with RV1, RV2, C7 in their mid position
+- Oscilloscope GND clip to TP4
 
 1/
 - Turn on computer.
