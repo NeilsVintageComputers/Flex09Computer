@@ -1,0 +1,24 @@
+KMFDC2 ALIGNMENT INSTRUCTIONS
+
+A Oscilloscope is required to carry out this alignment procedure.
+
+- Initially start with RV1, RV2, C7 in their mid position
+
+1/
+- Turn on computer.
+- Press Reset.
+- Put a jumper on JP2 "TEST".
+
+2/
+DATA SEPARATOR ALIGNMENT
+- Measure the waveform on TP3 and adjust RV1 for a 1mS pulse width.
+- Measure the waveform on TP2 and adjust C16 for 125kHz, 8us period.
+
+3/
+WRITE PRECOMPENSATION ADJUSTMENT
+- Measure the waveform on TP1 and adjust RV2 for a 200ns pulse width, 
+	(100ns-300ns depending on precomp requirement)
+
+4/
+- Remove the test jumper from JP2
+
