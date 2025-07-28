@@ -16,7 +16,7 @@ Due to problems I have had with 5.25” disks failing when I was restoring my So
  
 There are a few modern single board 6809 designs out there that can run Flex but I wanted to build a computer as similar to my original computer as I could thus the SS50 and SS30 boards are all based on old designs using old chips(some of which are only available on Aliexpress or Ebay) this also makes sure it is 100% compatible with the software disks I had, and to add to the vintage computer experience.
 
-The original computer I built used 0.1” pinheader connectors on the boards, however I found the molex connectors that SWTPC used on its SS50 backplanes are still for sale at Mouser and other suppliers in 2025, so I decided to build a mainboard somewhat based on the SWPC MB2. This also means the SS50 and SS30 boards I have made should work in any machine using this bus, (not tested though!)
+The original computer I built used 0.1” pinheader connectors on the boards, however I found the molex connectors that SWTPC used on its SS50 backplanes are still for sale at Mouser and other suppliers in 2025, so I decided to build a mainboard somewhat based on the SWTPC MB2. This also means the SS50 and SS30 boards I have made should work in any machine using this bus, (not tested though!)
 To make it more user friendly (and make building a case easier) I decided on a ATX form-factor and the option of using a ATX power supply, note: this requires all the voltage regulators on the mainboard & SS50/30 cards to be bridged out. 
 The mainboard will bolt into a ATX case though depending on the case used the use of a PicoATX psu (like the one in the photos) may be required to allow more space for SS50 boards.
 
