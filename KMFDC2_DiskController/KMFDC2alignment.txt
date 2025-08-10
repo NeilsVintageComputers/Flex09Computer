@@ -12,7 +12,7 @@ A Oscilloscope is required to carry out this alignment procedure.
 
 2/
 DATA SEPARATOR ALIGNMENT
-- Measure the waveform on TP3 and adjust RV1 for a 1mS pulse width.
+- Measure the waveform on TP3 and adjust RV1 for a 1uS pulse width.
 - Measure the waveform on TP2 and adjust C16 for 125kHz, 8us period.
 
 3/
@@ -22,4 +22,5 @@ WRITE PRECOMPENSATION ADJUSTMENT
 
 4/
 - Remove the test jumper from JP2
+
 
