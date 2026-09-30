@@ -1,5 +1,7 @@
 KMB2 Readme:
  
+<img width="640" height="478" alt="KMB2pic" src="https://github.com/user-attachments/assets/8053919c-2d88-4809-aaac-2ca92148b02d" />
+
 
 The KMB2 motherboard is a modified SWTPC hardware based design made to fit a ATX type PC Case (see note** below).
 Designed to be used with the KMP6809 processor board and the KMR64K ram board which do not support greater than 64K address space, I have no flex programs that i wish to use that require over 56K of ram so didn't bother with the extra complexity required,
