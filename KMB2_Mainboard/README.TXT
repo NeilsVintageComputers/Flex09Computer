@@ -1,6 +1,5 @@
 KMB2 Readme:
 
-https://github.com/NeilsVintageComputers/Flex09Computer/blob/main/KMB2_Mainboard/KMB2pic.jpg
 
 The KMB2 motherboard is a modified SWTPC hardware based design made to fit a ATX type PC Case (see note** below).
 Designed to be used with the KMP6809 processor board and the KMR64K ram board which do not support greater than 64K address space, I have no flex programs that i wish to use that require over 56K of ram so didn't bother with the extra complexity required,
